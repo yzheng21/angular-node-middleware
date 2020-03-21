@@ -3,6 +3,7 @@
 const https = require('https');
 const querystring = require('querystring');
 const config = require('../../config');
+const logger = require('../../components/logger')('authenticator');
 
 const COOKIE_KEY = 'abc';
 
@@ -22,7 +23,7 @@ const _redirectToLogin = (response) => {
  */
 
 module.exports = (req, res, next) => {
-    console.log('start cookie authenticate');
+    logger.info('start cookie authenticate');
     const authCookie = req.cookies[COOKIE_KEY];
 
     if (!authCookie) {
@@ -35,7 +36,7 @@ module.exports = (req, res, next) => {
                 try {
                     // validation process
                 } catch (e) {
-                    console.error('Failed to parse validation response', e);
+                    logger.info('Failed to parse validation response', e);
                 }
                 next();
             });

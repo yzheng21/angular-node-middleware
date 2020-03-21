@@ -16,7 +16,8 @@ module.exports = {
     },
     dsAuth: {},
     logger: {
+        logLevel: 'info',
         parentDir: process.env.LOG_DIR,
         fileName: process.env.AppName
-    }
+    },
 }

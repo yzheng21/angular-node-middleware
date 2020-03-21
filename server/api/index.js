@@ -1,12 +1,13 @@
 const config = require('../config');
 const fs = require('fs');
 const path = require('path');
+const logger = require('../components/logger')('api');
 
 const mainFile = 'index.js';
 const entryPoint = '/index.html';
 
 module.exports = (app) => {
-    console.log('api middleware');
+    logger.info('start initialize api middleware');
     const contextPath = config.app.contextPath || '';
     const buildOutputPath = config.app.outputPath + entryPoint;
 
@@ -18,16 +19,15 @@ module.exports = (app) => {
         if (stat.isDirectory() && fs.existsSync(filename)) {
             app.use(require(filename));
         }
+        logger.info('finish the all api initialization');
     });
     
     /* Main route for the index.html */
     app.get(contextPath, (req, res, next) => {
-        console.log('home', req.url);
         res.sendFile(path.resolve(buildOutputPath));
     });
 
     app.get(contextPath + '*', (req, res, next) => {
-        console.log('home', req.url);
         res.sendFile(path.resolve(buildOutputPath));
     });
 

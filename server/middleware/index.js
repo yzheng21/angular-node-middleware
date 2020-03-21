@@ -1,6 +1,7 @@
 'use strict'
 
 const express = require('express');
+const logger = require('../components/logger')('middleware');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
@@ -29,7 +30,7 @@ module.exports = (app) => {
 
     // global config
     app.use((req, res, next) => {
-        console.log('global interception');
+        logger.info('start global response configuration');
         res.append('Access-Control-Allow-Origin', ['*']);
         res.append('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
         res.append('Access-Control-Allow-Headers', 'Content-Type');
@@ -39,4 +40,6 @@ module.exports = (app) => {
     });
 
     api(app);
+
+    logger.info('finish the middleware initialization');
 }

@@ -1,8 +1,10 @@
 'use strict';
 
+const logger = require('../components/logger')('exception');
+
 module.exports = () => {
     return (req, res, next) => {
-        console.log('start handle exceptions');
+        logger.info('start handle exceptions');
         try {
             return next();
         } catch (e) {
