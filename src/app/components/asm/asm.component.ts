@@ -8,20 +8,17 @@ import { Component, OnInit } from '@angular/core';
 export class AsmComponent implements OnInit {
 
   todos;
-  constructor() {
-    this.fetchBookList().then(
-      res => this.todos = res
-    )
-  }
+  constructor() {}
 
   fetchBookList() {
     return fetch('/asm/todos', {
       method: 'GET'
     })
-    .then(res => res)
+    .then(res => res.json());
   }
 
   ngOnInit() {
+    this.fetchBookList().then(res => this.todos = res);
   }
 
 }

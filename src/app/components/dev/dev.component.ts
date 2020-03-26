@@ -8,23 +8,17 @@ import { Component, OnInit } from '@angular/core';
 export class DevComponent implements OnInit {
 
   todos;
-  constructor() {
-    this.fetchBookList().then(
-      res => this.todos = res
-    )
-  }
+  constructor() {}
 
   fetchBookList() {
-    return new Promise((resolve, reject) => {
-      fetch('/dep/todos', {
-        method: 'GET'
-      })
-      .then(res => res)
-      .then(todos => resolve(todos));
-    });
+    return fetch('/dep/todos', {
+      method: 'GET'
+    })
+    .then(res => res.json());
   }
 
   ngOnInit() {
+    this.fetchBookList().then(res => this.todos = res);
   }
 
 }

@@ -4,12 +4,12 @@ const path = require('path');
 const logger = require('../components/logger')('api');
 
 const mainFile = 'index.js';
-const entryPoint = '/index.html';
+const entryPoint = 'index.html';
 
 module.exports = (app) => {
     logger.info('start initialize api middleware');
     const contextPath = config.app.contextPath || '';
-    const buildOutputPath = config.app.outputPath + entryPoint;
+    const buildOutputPath = path.join(config.app.outputPath, entryPoint);
 
     /* initialize all api */
     fs.readdirSync(__dirname).forEach(pathname => {
