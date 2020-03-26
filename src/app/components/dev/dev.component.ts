@@ -19,7 +19,7 @@ export class DevComponent implements OnInit {
       fetch('/dep/todos', {
         method: 'GET'
       })
-      .then(res => res.json())
+      .then(res => res)
       .then(todos => resolve(todos));
     });
   }

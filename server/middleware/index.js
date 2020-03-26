@@ -12,7 +12,7 @@ const exceptions = require('./exceptions');
 const api = require('../api');
 
 module.exports = (app) => {
-    app.use(bodyParser.json());
+    app.use(bodyParser);
     app.use(bodyParser.urlencoded({'extended': 'false'}));
     app.use(cookieParser());
 

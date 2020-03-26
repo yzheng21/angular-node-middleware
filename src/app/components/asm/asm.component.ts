@@ -18,7 +18,7 @@ export class AsmComponent implements OnInit {
     return fetch('/asm/todos', {
       method: 'GET'
     })
-    .then(res => res.json())
+    .then(res => res)
   }
 
   ngOnInit() {
